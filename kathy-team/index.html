@@ -1,0 +1,779 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kathy Norman | Past-Client Revenue Opportunity Diagnostic</title>
+
+<style>
+:root {
+  --navy: #0F172A;
+  --gold: #B99A5B;
+  --cream: #F7F4ED;
+  --white: #FFFFFF;
+  --muted: #64748B;
+  --border: #E7E1D5;
+  --green: #55745F;
+  --red: #A45B50;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+  line-height: 1.6;
+}
+
+.container {
+  width: min(920px, 92%);
+  margin: auto;
+}
+
+header {
+  padding: 25px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  font-size: 13px;
+  letter-spacing: 3px;
+  font-weight: bold;
+  color: var(--gold);
+}
+
+.hero {
+  text-align: center;
+  padding: 75px 15px 45px;
+}
+
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 2px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(34px, 6vw, 54px);
+  line-height: 1.15;
+  margin: 18px auto;
+  max-width: 750px;
+  font-weight: normal;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: 15px auto;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 30px;
+  margin: 22px 0;
+  box-shadow: 0 8px 30px rgba(15,23,42,.04);
+}
+
+.section-title {
+  font-family: Georgia, serif;
+  font-size: 27px;
+  margin: 0 0 8px;
+  font-weight: normal;
+}
+
+.section-description {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.metric {
+  margin: 22px 0;
+}
+
+.metric label {
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+
+.metric small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 9px;
+}
+
+.metric input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 17px;
+  color: var(--navy);
+  background: #FDFCFA;
+}
+
+.metric input:focus {
+  outline: 2px solid var(--gold);
+  border-color: var(--gold);
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+button {
+  border: none;
+  padding: 15px 23px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: .2s;
+}
+
+.primary {
+  background: var(--navy);
+  color: white;
+  flex: 1;
+}
+
+.primary:hover {
+  background: #25334D;
+}
+
+.secondary {
+  background: #F1EDE4;
+  color: var(--navy);
+}
+
+#result {
+  display: none;
+  scroll-margin-top: 25px;
+}
+
+.result-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 20px;
+  margin-bottom: 22px;
+}
+
+.result-header .eyebrow {
+  margin-bottom: 8px;
+}
+
+.result-header h2 {
+  font-family: Georgia, serif;
+  font-size: 32px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.result-summary {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.insight {
+  padding: 20px;
+  background: #F8F6F0;
+  border-left: 3px solid var(--gold);
+  border-radius: 6px;
+  margin: 20px 0;
+}
+
+.insight h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.insight p {
+  margin: 0;
+  color: #475569;
+  font-size: 14px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 22px 0;
+}
+
+.stat {
+  background: #FAF9F6;
+  border: 1px solid var(--border);
+  padding: 18px;
+  border-radius: 9px;
+}
+
+.stat span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.stat strong {
+  font-size: 25px;
+  font-family: Georgia, serif;
+}
+
+.stage-row {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.stage-row:last-child {
+  border-bottom: none;
+}
+
+.stage-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.stage-detail {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 5px;
+}
+
+.bar {
+  height: 7px;
+  background: #EEEAE1;
+  border-radius: 20px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 20px;
+}
+
+.warning {
+  background: #FBF0ED;
+  border-left: 3px solid var(--red);
+  padding: 13px 16px;
+  border-radius: 5px;
+  color: #7C3F37;
+  font-size: 13px;
+  margin: 15px 0;
+}
+
+.next-step {
+  background: var(--navy);
+  color: white;
+  padding: 25px;
+  border-radius: 10px;
+  margin-top: 25px;
+}
+
+.next-step h3 {
+  font-family: Georgia, serif;
+  font-size: 23px;
+  font-weight: normal;
+  margin: 0 0 10px;
+  color: #E6D2A8;
+}
+
+.next-step p {
+  color: #E2E8F0;
+  font-size: 14px;
+  margin: 0;
+}
+
+.disclaimer {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  margin: 25px 0;
+}
+
+footer {
+  text-align: center;
+  padding: 35px 10px;
+  color: var(--muted);
+  font-size: 12px;
+  border-top: 1px solid var(--border);
+  margin-top: 45px;
+}
+
+footer strong {
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+
+@media(max-width:600px) {
+  .card {
+    padding: 21px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 50px;
+  }
+
+  .stage-top {
+    flex-direction: column;
+    gap: 3px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <div class="brand">SHARD MEDIA</div>
+  </div>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <div class="eyebrow">A Private Business Diagnostic for Kathy Norman</div>
+
+  <h1>Are Your Past-Client Relationships Creating Future Business?</h1>
+
+  <p>
+    Your past clients represent more than completed transactions.
+    They may also represent future moves, referrals, and valuable
+    conversations that have not yet been identified.
+  </p>
+
+  <p>
+    This diagnostic helps you examine one specific part of that
+    opportunity: how relationships move from your reachable database
+    toward meaningful conversations and potential appointments.
+  </p>
+</section>
+
+<section class="card">
+  <h2 class="section-title">Your Relationship-to-Opportunity Funnel</h2>
+
+  <p class="section-description">
+    Enter approximate counts for the same time period.
+    Use aggregate numbers only — no client names or private contact details.
+  </p>
+
+  <div class="metric">
+    <label for="stage1">1. Reachable Past Clients</label>
+    <small>
+      Past clients you can currently identify and reasonably reach.
+    </small>
+    <input id="stage1" type="number" min="0" step="1" placeholder="e.g. 180">
+  </div>
+
+  <div class="metric">
+    <label for="stage2">2. Meaningfully Contacted</label>
+    <small>
+      Past clients who received a meaningful personal check-in during the period.
+    </small>
+    <input id="stage2" type="number" min="0" step="1" placeholder="e.g. 90">
+  </div>
+
+  <div class="metric">
+    <label for="stage3">3. Two-Way Conversations</label>
+    <small>
+      People who actually responded and engaged in a conversation.
+    </small>
+    <input id="stage3" type="number" min="0" step="1" placeholder="e.g. 35">
+  </div>
+
+  <div class="metric">
+    <label for="stage4">4. Next-Move Opportunities Identified</label>
+    <small>
+      Conversations where a possible move, referral, or real-estate need was identified.
+    </small>
+    <input id="stage4" type="number" min="0" step="1" placeholder="e.g. 12">
+  </div>
+
+  <div class="metric">
+    <label for="stage5">5. Appointments Generated</label>
+    <small>
+      Appointments that resulted from those identified opportunities.
+    </small>
+    <input id="stage5" type="number" min="0" step="1" placeholder="e.g. 5">
+  </div>
+
+  <div class="actions">
+    <button class="primary" onclick="runDiagnostic()">
+      Reveal My Conversion Gap
+    </button>
+
+    <button class="secondary" onclick="resetDiagnostic()">
+      Reset
+    </button>
+  </div>
+</section>
+
+<section class="card" id="result">
+  <div class="result-header">
+    <div class="eyebrow">Your Diagnostic Results</div>
+    <h2>Where Your Relationship Funnel Needs Attention</h2>
+    <p class="result-summary" id="summary"></p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat">
+      <span>Weakest Conversion Stage</span>
+      <strong id="weakestRate">—</strong>
+    </div>
+
+    <div class="stat">
+      <span>Largest Numerical Drop-Off</span>
+      <strong id="largestDrop">—</strong>
+    </div>
+  </div>
+
+  <div id="warnings"></div>
+
+  <div class="insight">
+    <h3 id="weakestTitle">Your Main Conversion Gap</h3>
+    <p id="weakestExplanation"></p>
+  </div>
+
+  <h3 class="section-title" style="font-size:23px;margin-top:30px;">
+    Stage-by-Stage Breakdown
+  </h3>
+
+  <div id="breakdown"></div>
+
+  <div class="insight">
+    <h3 id="dropTitle">Where the Largest Number of Relationships Drop Off</h3>
+    <p id="dropExplanation"></p>
+  </div>
+
+  <div class="next-step">
+    <h3>Your Calm Next Step</h3>
+    <p id="nextStep"></p>
+  </div>
+
+  <p class="disclaimer">
+    This is an initial diagnostic based only on the numbers entered.
+    It does not establish lost revenue, prove a performance problem,
+    or assume that every past client has an upcoming real-estate need.
+    Results depend on the accuracy and consistency of the reporting period.
+  </p>
+</section>
+
+</main>
+
+<footer>
+  <strong>SHARD MEDIA</strong>
+  <p>Revenue Opportunity Diagnosis & Fulfillment</p>
+  <p>Prepared exclusively for Kathy Norman</p>
+</footer>
+
+<script>
+const stages = [
+  {
+    id: "stage1",
+    name: "Reachable Past Clients",
+    explanation:
+      "This is the starting population for the diagnostic. It represents the past-client relationships that can potentially be included in a structured relationship review."
+  },
+  {
+    id: "stage2",
+    name: "Meaningfully Contacted",
+    explanation:
+      "This stage measures how much of the reachable database received a meaningful personal touch. A gap here may justify examining contact organization, prioritization, or outreach consistency."
+  },
+  {
+    id: "stage3",
+    name: "Two-Way Conversations",
+    explanation:
+      "This stage distinguishes messages sent from relationships that actually became conversations. It may be useful to review the relevance, timing, and personalization of outreach."
+  },
+  {
+    id: "stage4",
+    name: "Next-Move Opportunities Identified",
+    explanation:
+      "This stage measures whether conversations revealed a possible next move, referral, or real-estate need. Not every conversation should produce an opportunity, so context matters."
+  },
+  {
+    id: "stage5",
+    name: "Appointments Generated",
+    explanation:
+      "This stage measures how many identified opportunities progressed to an appointment. A gap may warrant reviewing how next steps are offered and agreed upon."
+  }
+];
+
+function getValues() {
+  return stages.map(stage => {
+    const raw = document.getElementById(stage.id).value.trim();
+
+    if (raw === "") {
+      return null;
+    }
+
+    const value = Number(raw);
+
+    if (!Number.isInteger(value) || value < 0) {
+      throw new Error("Please enter whole numbers greater than or equal to zero.");
+    }
+
+    return value;
+  });
+}
+
+function formatPercent(value) {
+  return value.toFixed(1) + "%";
+}
+
+function runDiagnostic() {
+  const result = document.getElementById("result");
+  const warnings = document.getElementById("warnings");
+
+  try {
+    const values = getValues();
+
+    if (values.some(value => value === null)) {
+      alert("Please complete all five fields before running the diagnostic.");
+      return;
+    }
+
+    warnings.innerHTML = "";
+
+    let warningMessages = [];
+
+    for (let i = 1; i < values.length; i++) {
+      if (values[i] > values[i - 1]) {
+        warningMessages.push(
+          "Stage " + (i + 1) + " is greater than the preceding stage. " +
+          "Check that all figures use the same time period and counting rules."
+        );
+      }
+    }
+
+    const rates = [];
+    const drops = [];
+
+    for (let i = 0; i < values.length - 1; i++) {
+      const rate = values[i] > 0
+        ? (values[i + 1] / values[i]) * 100
+        : null;
+
+      const drop = values[i] - values[i + 1];
+
+      rates.push(rate);
+      drops.push(drop);
+    }
+
+    const validRates = rates
+      .map((rate, index) => ({ rate, index }))
+      .filter(item => item.rate !== null && item.rate >= 0);
+
+    const validDrops = drops
+      .map((drop, index) => ({ drop, index }))
+      .filter(item => item.drop >= 0);
+
+    const hasBaseline = values.some(value => value > 0);
+
+    if (!hasBaseline) {
+      document.getElementById("summary").textContent =
+        "All five stages are currently entered as zero. A meaningful conversion assessment is not possible without a non-zero baseline.";
+
+      document.getElementById("weakestRate").textContent = "N/A";
+      document.getElementById("largestDrop").textContent = "N/A";
+
+      document.getElementById("weakestTitle").textContent =
+        "No Conversion Baseline Yet";
+
+      document.getElementById("weakestExplanation").textContent =
+        "Because every stage is zero, there is not enough information to identify a conversion gap. Start by establishing the actual size of the reachable past-client database and the period being measured.";
+
+      document.getElementById("dropTitle").textContent =
+        "No Numerical Drop-Off Can Be Calculated";
+
+      document.getElementById("dropExplanation").textContent =
+        "A zero starting population does not provide a meaningful basis for calculating conversion or drop-off.";
+
+      document.getElementById("nextStep").textContent =
+        "Confirm the number of reachable past clients first. Then use one consistent reporting period to record meaningful contacts, conversations, identified opportunities, and appointments.";
+
+      document.getElementById("breakdown").innerHTML = "";
+
+      result.style.display = "block";
+      result.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    if (warningMessages.length) {
+      warnings.innerHTML = warningMessages.map(message =>
+        '<div class="warning">' + message + '</div>'
+      ).join("");
+    }
+
+    let weakest = null;
+
+    if (validRates.length) {
+      weakest = validRates.reduce((a, b) =>
+        a.rate < b.rate ? a : b
+      );
+    }
+
+    let largest = null;
+
+    if (validDrops.length) {
+      largest = validDrops.reduce((a, b) =>
+        a.drop > b.drop ? a : b
+      );
+    }
+
+    document.getElementById("weakestRate").textContent =
+      weakest ? formatPercent(weakest.rate) : "N/A";
+
+    document.getElementById("largestDrop").textContent =
+      largest ? largest.drop.toLocaleString() : "N/A";
+
+    document.getElementById("summary").textContent =
+      "Your results show how past-client relationships move through five stages, from reachability to appointments. Review the figures below before deciding what to investigate.";
+
+    if (weakest) {
+      const from = stages[weakest.index].name;
+      const to = stages[weakest.index + 1].name;
+
+      document.getElementById("weakestTitle").textContent =
+        "Lowest Conversion: " + from + " → " + to;
+
+      document.getElementById("weakestExplanation").textContent =
+        "The conversion rate from " + from + " to " + to +
+        " is " + formatPercent(weakest.rate) +
+        ". This is the lowest calculated transition in the funnel. It is a useful place to investigate, not proof of a problem. The reason may depend on timing, client circumstances, outreach quality, or how each stage is defined.";
+    } else {
+      document.getElementById("weakestTitle").textContent =
+        "Conversion Rate Cannot Be Calculated";
+
+      document.getElementById("weakestExplanation").textContent =
+        "The available starting counts do not provide a valid non-zero denominator for the transitions. Confirm the figures before interpreting conversion.";
+    }
+
+    if (largest) {
+      const from = stages[largest.index].name;
+      const to = stages[largest.index + 1].name;
+
+      document.getElementById("dropTitle").textContent =
+        "Largest Numerical Drop-Off: " + from + " → " + to;
+
+      document.getElementById("dropExplanation").textContent =
+        largest.drop.toLocaleString() +
+        " relationships separate these two stages in the numbers entered. This is the largest numerical difference, not necessarily the most important business issue. It should be interpreted alongside the conversion rate and the underlying client context.";
+    } else {
+      document.getElementById("dropTitle").textContent =
+        "No Valid Numerical Drop-Off";
+
+      document.getElementById("dropExplanation").textContent =
+        "The entered figures do not support a valid non-negative drop-off calculation for the transitions.";
+    }
+
+    let breakdownHTML = "";
+
+    for (let i = 0; i < rates.length; i++) {
+      const rate = rates[i];
+      const drop = drops[i];
+
+      const validRate = rate !== null && rate >= 0;
+      const displayRate = validRate ? formatPercent(rate) : "N/A";
+      const safeWidth = validRate
+        ? Math.max(0, Math.min(rate, 100))
+        : 0;
+
+      breakdownHTML += `
+        <div class="stage-row">
+          <div class="stage-top">
+            <span>${stages[i].name} → ${stages[i + 1].name}</span>
+            <span>${displayRate}</span>
+          </div>
+          <div class="stage-detail">
+            ${values[i].toLocaleString()} entering ·
+            ${values[i + 1].toLocaleString()} progressing ·
+            ${drop >= 0 ? drop.toLocaleString() + " difference" : "Check figures"}
+          </div>
+          <div class="bar">
+            <div class="bar-fill" style="width:${safeWidth}%"></div>
+          </div>
+        </div>
+      `;
+    }
+
+    document.getElementById("breakdown").innerHTML = breakdownHTML;
+
+    let nextStep = "";
+
+    if (weakest && largest &&
+        weakest.index === largest.index) {
+      nextStep =
+        "Begin by examining the " + stages[weakest.index].name +
+        " → " + stages[weakest.index + 1].name +
+        " transition. Review a small sample of actual interactions to understand what happened between the two stages before changing the process.";
+    } else if (weakest && largest) {
+      nextStep =
+        "Start with the lowest conversion transition (" +
+        stages[weakest.index].name + " → " +
+        stages[weakest.index + 1].name +
+        ") to understand the percentage gap. Separately review the largest numerical drop-off (" +
+        stages[largest.index].name + " → " +
+        stages[largest.index + 1].name +
+        ") to understand where the greatest number of relationships stop progressing. Do not assume these are the same issue.";
+    } else if (weakest) {
+      nextStep =
+        "Review the lowest conversion transition and check a sample of real interactions to understand what may be influencing progression.";
+    } else {
+      nextStep =
+        "Verify the figures and reporting period first. Then examine the transition with the largest numerical difference, while keeping the missing conversion baseline in mind.";
+    }
+
+    document.getElementById("nextStep").textContent = nextStep;
+
+    result.style.display = "block";
+    result.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+      block: "start"
+    });
+
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+function resetDiagnostic() {
+  stages.forEach(stage => {
+    document.getElementById(stage.id).value = "";
+  });
+
+  document.getElementById("result").style.display = "none";
+  document.getElementById("warnings").innerHTML = "";
+}
+</script>
+
+</body>
+</html>
